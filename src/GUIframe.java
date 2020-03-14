@@ -87,8 +87,29 @@ public class GUIframe {
 		});
 		frmDictionary.getContentPane().setLayout(null);
 		addWordBtn.setFocusPainted(false);
-		addWordBtn.setFont(new Font("Chalkboard", Font.PLAIN, 13));
+		addWordBtn.setFont(new Font("Times New Roman", Font.PLAIN, 13));
 		frmDictionary.getContentPane().add(addWordBtn);
+		
+		JButton removeWordBtn = new JButton("Remove Word");
+		removeWordBtn.setBounds(122, 6, 117, 29);
+		removeWordBtn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				EventQueue.invokeLater(new Runnable() {
+					public void run() {
+						try {
+							RemoveWord window = new RemoveWord();
+							window.frame.setVisible(true);
+						} catch (Exception e) {
+							e.printStackTrace();
+						}
+					}
+				});
+			}
+		});
+		removeWordBtn.setFont(new Font("Times New Roman", Font.PLAIN, 13));
+		removeWordBtn.setFocusPainted(false);
+		frmDictionary.getContentPane().add(removeWordBtn);
+
 	}
 
 }
