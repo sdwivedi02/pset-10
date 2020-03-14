@@ -41,8 +41,38 @@ public class RemoveWord {
 	 */
 	private void initialize() {
 		frame = new JFrame();
-		frame.setBounds(100, 100, 450, 300);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setBounds(100, 100, 450, 164);
+		frame.setLocationRelativeTo(null);
+		frame.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
+		frame.getContentPane().setLayout(null);
+
+		JLabel exclamation = new JLabel("!");
+		exclamation.setBounds(31, 6, 25, 130);
+		exclamation.setFont(new Font("Chalkboard", Font.PLAIN, 99));
+		frame.getContentPane().add(exclamation);
+
+		JLabel warning = new JLabel("WARNING!");
+		warning.setBounds(68, 19, 105, 16);
+		warning.setFont(new Font("Chalkboard", Font.BOLD, 18));
+		frame.getContentPane().add(warning);
+
+		JTextArea warningMessage = new JTextArea();
+		warningMessage.setEditable(false);
+		warningMessage.setFocusable(false);
+		warningMessage.setFont(new Font("Chalkboard", Font.PLAIN, 13));
+		warningMessage.setLineWrap(true);
+		warningMessage.setText(
+				"You are about to delete the selected word(s). This action cannot be undone.\n\nAre you sure you wish to proceed?");
+		warningMessage.setBounds(68, 47, 321, 70);
+		warningMessage.setBackground(new Color(238, 238, 238));
+		frame.getContentPane().add(warningMessage);
+
+		JButton cancelButton = new JButton("Cancel");
+		cancelButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				frame.dispose();
+			}
+		});
 	}
 
 }
