@@ -17,3 +17,21 @@ public class Word {
 		this.synonyms = synonyms;
 		this.antonyms = antonyms;
 	}
+	
+	public String getName() {
+		return word;
+	}
+	
+	public ArrayList<Definition> getDefinitions() {
+		return definitions;
+	}
+	
+	public ArrayList<String> getSynonyms() {
+		return synonyms;
+	}
+	
+	public ArrayList<String> getAntonyms() {
+		return antonyms;
+	}
+	
+}
