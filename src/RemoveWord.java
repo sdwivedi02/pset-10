@@ -73,6 +73,22 @@ public class RemoveWord {
 				frame.dispose();
 			}
 		});
+		cancelButton.setFont(new Font("Lucida Grande", Font.BOLD, 13));
+		cancelButton.setBounds(370, 113, 80, 29);
+		cancelButton.setFocusPainted(false);
+		frame.getContentPane().add(cancelButton);
+
+		JButton deleteButton = new JButton("Delete");
+		deleteButton.setFocusPainted(false);
+		deleteButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				// remove word
+
+			}
+		});
+		deleteButton.setFont(new Font("Lucida Grande", Font.PLAIN, 13));
+		deleteButton.setBounds(296, 113, 80, 29);
+		frame.getContentPane().add(deleteButton);
 	}
 
 }
