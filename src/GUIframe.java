@@ -120,7 +120,6 @@ public class GUIframe {
 		});
 		searchBox.setFont(new Font("Times New Roman", Font.PLAIN, 18));
 
-		// adds/removes placeholder when focus gained/lost
 		searchBox.addFocusListener(new FocusAdapter() {
 			@Override
 			public void focusGained(FocusEvent e) {
@@ -138,6 +137,82 @@ public class GUIframe {
 		});
 		frmDictionary.getContentPane().add(searchBox);
 		searchBox.setColumns(10);
+		
+		aToZRdoBtn = new JRadioButton("A to Z");
+		aToZRdoBtn.setBounds(6, 70, 141, 23);
+		aToZRdoBtn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				// sort A to Z
+				DefaultListModel<String> listModel = new DefaultListModel<>();
+				ArrayList<Word> jsonArray = GSONread.returnWords(true);
+				for (int i = 0; i < jsonArray.size(); i++) {
+					listModel.addElement(jsonArray.get(i).getName().toString());
+				}
+				wordList.setModel(listModel);
+			}
+		});
+		aToZRdoBtn.setFont(new Font("Times New Roman", Font.PLAIN, 13));
+		aToZRdoBtn.setSelected(true);
+		aToZRdoBtn.setFocusPainted(false);
+		buttonGroup.add(aToZRdoBtn);
+		frmDictionary.getContentPane().add(aToZRdoBtn);
+
+		JRadioButton zToARdoBtn = new JRadioButton("Z to A");
+		zToARdoBtn.setBounds(6, 95, 141, 23);
+		zToARdoBtn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				DefaultListModel<String> listModel = new DefaultListModel<>();
+				ArrayList<Word> jsonArray = GSONread.returnWords(false);
+				for (int i = 0; i < jsonArray.size(); i++) {
+					listModel.addElement(jsonArray.get(i).getName().toString());
+				}
+				wordList.setModel(listModel);
+			}
+		});
+		zToARdoBtn.setFont(new Font("Times New Roman", Font.PLAIN, 13));
+		zToARdoBtn.setFocusPainted(false);
+		buttonGroup.add(zToARdoBtn);
+		frmDictionary.getContentPane().add(zToARdoBtn);
+
+		JTextPane textPane = new JTextPane();
+		textPane.setFont(new Font("Times New Roman", Font.PLAIN, 16));
+		textPane.setBounds(251, 70, 429, 437);
+		frmDictionary.getContentPane().add(textPane);
+
+		jsonArray = GSONread.returnWords(true);
+
+		wordList = new JList();
+		DefaultListModel<String> listModel = new DefaultListModel<>();
+		ArrayList<Word> jsonArray = GSONread.returnWords(true);
+		for (int i = 0; i < jsonArray.size(); i++) {
+			listModel.addElement(jsonArray.get(i).getName().toString());
+		}
+		wordList.setModel(listModel);
+		wordList.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				int index = wordList.locationToIndex(e.getPoint());
+				result = "Word: " + Dictionary.getNames().get(index);
+				result += "\n" + Dictionary.getFormattedWordDefinitions(index);
+				result += "\n" + Dictionary.getFormattedSyns(index);
+				result += "\n" + Dictionary.getFormattedAnts(index);
+				textPane.setText(result);
+			}
+		});
+		wordList.setBounds(6, 119, 233, 388);
+		wordList.setFont(new Font("Times New Roman", Font.PLAIN, 12));
+
+		listScroller = new JScrollPane();
+		listScroller.setBounds(6, 119, 233, 388);
+		listScroller.setViewportView(wordList);
+		wordList.setLayoutOrientation(JList.VERTICAL);
+		frmDictionary.getContentPane().add(listScroller);
+
+		JLabel lblNewLabel = new JLabel("Dictionary");
+		lblNewLabel.setBounds(260, 11, 332, 61);
+		lblNewLabel.setFont(new Font("Times New Roman", Font.BOLD, 47));
+		frmDictionary.getContentPane().add(lblNewLabel);
+
 
 	}
 
