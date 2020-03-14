@@ -109,6 +109,35 @@ public class GUIframe {
 		removeWordBtn.setFont(new Font("Times New Roman", Font.PLAIN, 13));
 		removeWordBtn.setFocusPainted(false);
 		frmDictionary.getContentPane().add(removeWordBtn);
+		
+		searchBox = new JTextField("Search...");
+		searchBox.setBounds(6, 34, 233, 38);
+		searchBox.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyReleased(KeyEvent e) {
+				
+			}
+		});
+		searchBox.setFont(new Font("Times New Roman", Font.PLAIN, 18));
+
+		// adds/removes placeholder when focus gained/lost
+		searchBox.addFocusListener(new FocusAdapter() {
+			@Override
+			public void focusGained(FocusEvent e) {
+				if (searchBox.getText().equals("Search...")) {
+					searchBox.setText("");
+				}
+			}
+
+			@Override
+			public void focusLost(FocusEvent e) {
+				if (!searchBox.getText().equals("Search...")) {
+					searchBox.setText("Search...");
+				}
+			}
+		});
+		frmDictionary.getContentPane().add(searchBox);
+		searchBox.setColumns(10);
 
 	}
 
