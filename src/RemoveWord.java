@@ -48,18 +48,18 @@ public class RemoveWord {
 
 		JLabel exclamation = new JLabel("!");
 		exclamation.setBounds(31, 6, 25, 130);
-		exclamation.setFont(new Font("Chalkboard", Font.PLAIN, 99));
+		exclamation.setFont(new Font("Times New Roman", Font.PLAIN, 99));
 		frame.getContentPane().add(exclamation);
 
 		JLabel warning = new JLabel("WARNING!");
 		warning.setBounds(68, 19, 105, 16);
-		warning.setFont(new Font("Chalkboard", Font.BOLD, 18));
+		warning.setFont(new Font("Times New Roman", Font.BOLD, 18));
 		frame.getContentPane().add(warning);
 
 		JTextArea warningMessage = new JTextArea();
 		warningMessage.setEditable(false);
 		warningMessage.setFocusable(false);
-		warningMessage.setFont(new Font("Chalkboard", Font.PLAIN, 13));
+		warningMessage.setFont(new Font("Times New Roman", Font.PLAIN, 13));
 		warningMessage.setLineWrap(true);
 		warningMessage.setText(
 				"You are about to delete the selected word(s). This action cannot be undone.\n\nAre you sure you wish to proceed?");
