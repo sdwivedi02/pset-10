@@ -12,7 +12,12 @@ import java.awt.event.ActionEvent;
 
 public class AddWord {
 
-	private JFrame frame;
+	public JFrame addWordFrame;
+	private JTextField wordTextField;
+	private JTextField posTextField;
+	private JTextField definitionTextField;
+	private JTextField synonymsTextField;
+	private JTextField antonymsTextField;
 
 	/**
 	 * Launch the application.
