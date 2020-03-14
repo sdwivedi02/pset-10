@@ -24,8 +24,16 @@ import java.awt.event.MouseEvent;
 
 public class GUIframe {
 
-	private JFrame frame;
+	public JRadioButton aToZRdoBtn;
+	private JFrame frmDictionary;
+	private JTextField searchBox;
+	private final ButtonGroup buttonGroup = new ButtonGroup();
 
+	JList<String> wordList;
+	JScrollPane listScroller;
+	@SuppressWarnings("rawtypes")
+	List jsonArray;
+	String result;
 	/**
 	 * Launch the application.
 	 */
@@ -33,8 +41,8 @@ public class GUIframe {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					GUIframe window = new GUIframe();
-					window.frame.setVisible(true);
+					GUIframe window = new GUIframe(true);
+					window.frmDictionary.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -45,17 +53,42 @@ public class GUIframe {
 	/**
 	 * Create the application.
 	 */
-	public GUIframe() {
-		initialize();
+	public GUIframe(boolean firstRun) {
+		initialize(firstRun);
 	}
 
 	/**
 	 * Initialize the contents of the frame.
 	 */
+	@SuppressWarnings({ "unchecked", "rawtypes" })
 	private void initialize() {
-		frame = new JFrame();
-		frame.setBounds(100, 100, 450, 300);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frmDictionary = new JFrame();
+		frmDictionary.setTitle("Dictionary");
+		frmDictionary.setBounds(100, 100, 686, 535);
+		frmDictionary.setLocationRelativeTo(null);
+		frmDictionary.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+		// add word button
+		JButton addWordBtn = new JButton("Add Word");
+		addWordBtn.setBounds(6, 6, 117, 29);
+		addWordBtn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				EventQueue.invokeLater(new Runnable() {
+					public void run() {
+						try {
+							AddWord window = new AddWord();
+							window.addWordFrame.setVisible(true);
+						} catch (Exception e) {
+							e.printStackTrace();
+						}
+					}
+				});
+			}
+		});
+		frmDictionary.getContentPane().setLayout(null);
+		addWordBtn.setFocusPainted(false);
+		addWordBtn.setFont(new Font("Chalkboard", Font.PLAIN, 13));
+		frmDictionary.getContentPane().add(addWordBtn);
 	}
 
 }
